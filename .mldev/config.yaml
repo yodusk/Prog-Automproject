@@ -6,7 +6,3 @@ logger:
 extras:
   base: mldev.experiment_objects
   dvc: mldev_dvc.dvc_stage
-
-environ:
-  DATASET:
-  PYTHON_INTERPRETER: "python3"
