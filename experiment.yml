@@ -3,7 +3,6 @@ project_src: &project_src
     - experiment.yml
     - data
     - src
-    - prepare.sh
 
 FB_path: !path &FB15K
   path: ./data/FB15k-237
@@ -16,11 +15,6 @@ NELL_path: !path &NELL
 
 kinship_path: !path &KINSHIP
   path: ./data/kinship
-
-prepare_exp: &prepare_exp !BasicStage
-  script:
-    - chmod +x prepare.sh
-    - ./prepare.sh
 
 train_and_val_FB: &train_and_val_FB !BasicStage
   name: train_and_val_FB
@@ -164,22 +158,18 @@ train_and_val_NELL: &train_and_val_NELL !BasicStage
 
 FB15K_RUN: !GenericPipeline
   runs:
-    - *prepare_exp
     - *train_and_val_FB
 
 WordNet_Run: !GenericPipeline
   runs:
-    - *prepare_exp
     - *train_and_val_WN
 
 Kinship_run: !GenericPipeline
   runs:
-    - *prepare_exp
     - *train_and_val_Kinship
 
 Nell_run: !GenericPipeline
   runs:
-    - *prepare_exp
     - *train_and_val_NELL
 
 
