@@ -1,0 +1,12 @@
+# reconsider use of config file in distribution
+# should be placed in user or project dir
+logger:
+  level: "INFO"
+
+extras:
+  base: mldev.experiment_objects
+  dvc: mldev_dvc.dvc_stage
+
+environ:
+  DATASET:
+  PYTHON_INTERPRETER: "python3"

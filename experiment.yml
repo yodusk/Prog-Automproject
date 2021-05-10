@@ -1,0 +1,186 @@
+project_src: &project_src
+  files:
+    - experiment.yml
+    - data
+    - src
+    - prepare.sh
+
+FB_path: !path &FB15K
+  path: ./data/FB15k-237
+
+WN_path: !path &WordNet
+  path: ./data/WN18RR
+
+NELL_path: !path &NELL
+  path: ./data/NELL-995
+
+kinship_path: !path &KINSHIP
+  path: ./data/kinship
+
+prepare_exp: &prepare_exp !BasicStage
+  script:
+    - chmod +x prepare.sh
+    - ./prepare.sh
+
+train_and_val_FB: &train_and_val_FB !BasicStage
+  name: train_and_val_FB
+  params:
+    epochs_gat: 3000
+    epochs_conv: 200
+    weight_decay_gat: 0.00001
+    get_2hop: True
+    partial_2hop: True
+    batch_size_gat: 272115
+    margin: 1
+    out_channels: 50
+    drop_conv: 0.3
+    weight_decay_conv: 0.000001
+  inputs:
+    - !path
+      path: *FB15K
+  outputs:
+    - !path
+      path: ./checkpoints/fb/out/
+
+  script:
+    - python3 src/main.py --data  ${path(self.inputs[0])}\
+                      --epochs_gat ${self.params.epochs_gat} \
+                      --epochs_conv ${self.params.epochs_conv} \
+                      --weight_decay_gat ${self.params.weight_decay_gat} \
+                      --get_2hop ${self.params.get_2hop} \
+                      --partial_2hop ${self.params.partial_2hop} \
+                      --batch_size_gat ${self.params.batch_size_gat} \
+                      --margin ${self.params.margin} \
+                      --out_channels ${self.params.out_channels} \
+                      --drop_conv ${self.params.drop_conv} \
+                      --weight_decay_conv ${self.params.weight_decay_conv} \
+                      --output_folder ${path(self.outputs[0])}
+
+
+train_and_val_WN: &train_and_val_WN !BasicStage
+  name: train_and_val_WN
+  params:
+    epochs_gat: 3600
+    epochs_conv: 200
+    weight_decay_gat: 0.00001
+    get_2hop: True
+    partial_2hop: False
+    batch_size_gat: 86835
+    margin: 5
+    out_channels: 500
+    drop_conv: 0.0
+    weight_decay_conv: 0.000001
+  inputs:
+    - !path
+      path: *WordNet
+  outputs:
+    - !path
+      path: ./checkpoints/wn/out/
+
+  script:
+    - python3 src/main.py --data  ${path(self.inputs[0])}\
+                      --epochs_gat ${self.params.epochs_gat} \
+                      --epochs_conv ${self.params.epochs_conv} \
+                      --weight_decay_gat ${self.params.weight_decay_gat} \
+                      --get_2hop ${self.params.get_2hop} \
+                      --partial_2hop ${self.params.partial_2hop} \
+                      --batch_size_gat ${self.params.batch_size_gat} \
+                      --margin ${self.params.margin} \
+                      --out_channels ${self.params.out_channels} \
+                      --drop_conv ${self.params.drop_conv} \
+                      --weight_decay_conv ${self.params.weight_decay_conv} \
+                      --output_folder ${path(self.outputs[0])}
+
+
+train_and_val_Kinship: &train_and_val_Kinship !BasicStage
+  name: train_and_val_Kinship
+  params:
+    epochs_gat: 3600
+    epochs_conv: 200
+    weight_decay_gat: 0.00001
+    get_2hop: True
+    partial_2hop: False
+    batch_size_gat: 86835
+    margin: 5
+    out_channels: 500
+    drop_conv: 0.0
+    weight_decay_conv: 0.000001
+  inputs:
+    - !path
+      path: *KINSHIP
+  outputs:
+    - !path
+      path: ./checkpoints/kinship/out/
+
+  script:
+    - python3 src/main.py --data  ${path(self.inputs[0])}\
+                      --epochs_gat ${self.params.epochs_gat} \
+                      --epochs_conv ${self.params.epochs_conv} \
+                      --weight_decay_gat ${self.params.weight_decay_gat} \
+                      --get_2hop ${self.params.get_2hop} \
+                      --partial_2hop ${self.params.partial_2hop} \
+                      --batch_size_gat ${self.params.batch_size_gat} \
+                      --margin ${self.params.margin} \
+                      --out_channels ${self.params.out_channels} \
+                      --drop_conv ${self.params.drop_conv} \
+                      --weight_decay_conv ${self.params.weight_decay_conv} \
+                      --output_folder ${path(self.outputs[0])}
+
+
+train_and_val_NELL: &train_and_val_NELL !BasicStage
+  name: train_and_val_NELL
+  params:
+    epochs_gat: 3600
+    epochs_conv: 200
+    weight_decay_gat: 0.00001
+    get_2hop: True
+    partial_2hop: False
+    batch_size_gat: 86835
+    margin: 5
+    out_channels: 500
+    drop_conv: 0.0
+    weight_decay_conv: 0.000001
+  inputs:
+    - !path
+      path: *NELL
+  outputs:
+    - !path
+      path: ./checkpoints/nell/out/
+
+  script:
+    - python3 src/main.py --data  ${path(self.inputs[0])}\
+                      --epochs_gat ${self.params.epochs_gat} \
+                      --epochs_conv ${self.params.epochs_conv} \
+                      --weight_decay_gat ${self.params.weight_decay_gat} \
+                      --get_2hop ${self.params.get_2hop} \
+                      --partial_2hop ${self.params.partial_2hop} \
+                      --batch_size_gat ${self.params.batch_size_gat} \
+                      --margin ${self.params.margin} \
+                      --out_channels ${self.params.out_channels} \
+                      --drop_conv ${self.params.drop_conv} \
+                      --weight_decay_conv ${self.params.weight_decay_conv} \
+                      --output_folder ${path(self.outputs[0])}
+
+
+FB15K_RUN: !GenericPipeline
+  runs:
+    - *prepare_exp
+    - *train_and_val_FB
+
+WordNet_Run: !GenericPipeline
+  runs:
+    - *prepare_exp
+    - *train_and_val_WN
+
+Kinship_run: !GenericPipeline
+  runs:
+    - *prepare_exp
+    - *train_and_val_Kinship
+
+Nell_run: !GenericPipeline
+  runs:
+    - *prepare_exp
+    - *train_and_val_NELL
+
+
+
