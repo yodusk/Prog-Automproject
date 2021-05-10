@@ -2,8 +2,8 @@ import torch
 # from torchviz import make_dot, make_dot_from_trace
 import torch.nn as nn
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
+# import matplotlib.pyplot as plt
+# from matplotlib.lines import Line2D
 
 CUDA = torch.cuda.is_available()
 

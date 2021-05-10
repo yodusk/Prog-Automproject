@@ -1,14 +1,14 @@
 import torch
 
-from src.models import SpKBGATModified, SpKBGATConvOnly
+from models import SpKBGATModified, SpKBGATConvOnly
 from torch.autograd import Variable
 import torch.nn as nn
 import numpy as np
 from copy import deepcopy
 
-from src.preprocess import init_embeddings, build_data
-from src.create_batch import Corpus
-from src.utils import save_model
+from preprocess import init_embeddings, build_data
+from create_batch import Corpus
+from utils import save_model
 
 import random
 import argparse
