@@ -1,7 +1,7 @@
 # reconsider use of config file in distribution
 # should be placed in user or project dir
 logger:
-  level: "INFO"
+  level: "DEBUG"
 
 extras:
   base: mldev.experiment_objects
