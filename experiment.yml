@@ -37,7 +37,7 @@ train_and_val_FB: &train_and_val_FB !BasicStage
       path: ./checkpoints/fb/out
 
   script:
-    - python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
+    - chmod +x prepare.sh && ./prepare.sh && python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
 
 
 train_and_val_WN: &train_and_val_WN !BasicStage
@@ -61,7 +61,7 @@ train_and_val_WN: &train_and_val_WN !BasicStage
       path: ./checkpoints/wn/out
 
   script:
-    - python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
+    - chmod +x prepare.sh && ./prepare.sh && python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
 
 train_and_val_Kinship: &train_and_val_Kinship !BasicStage
   name: train_and_val_Kinship
@@ -84,7 +84,7 @@ train_and_val_Kinship: &train_and_val_Kinship !BasicStage
       path: ./checkpoints/kinship/out
 
   script:
-    - python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
+    - chmod +x prepare.sh && ./prepare.sh && python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
 
 
 train_and_val_NELL: &train_and_val_NELL !BasicStage
@@ -108,7 +108,7 @@ train_and_val_NELL: &train_and_val_NELL !BasicStage
       path: ./checkpoints/nell/out
 
   script:
-    - python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
+    - chmod +x prepare.sh && ./prepare.sh && python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
 
 
 train_and_val_FB_colab: &train_and_val_FB_colab !BasicStage
@@ -132,7 +132,7 @@ train_and_val_FB_colab: &train_and_val_FB_colab !BasicStage
       path: ./checkpoints/fb/out
 
   script:
-    - python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
+    - chmod +x prepare.sh && ./prepare.sh && python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
 
 
 train_and_val_WN_colab: &train_and_val_WN_colab !BasicStage
@@ -156,7 +156,7 @@ train_and_val_WN_colab: &train_and_val_WN_colab !BasicStage
       path: ./checkpoints/wn/out
 
   script:
-    - python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
+    - chmod +x prepare.sh && ./prepare.sh && python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
 
 train_and_val_Kinship_colab: &train_and_val_Kinship_colab !BasicStage
   name: train_and_val_Kinship_colab
@@ -179,7 +179,7 @@ train_and_val_Kinship_colab: &train_and_val_Kinship_colab !BasicStage
       path: ./checkpoints/kinship/out
 
   script:
-    - python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
+    - chmod +x prepare.sh && ./prepare.sh && python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
 
 
 train_and_val_NELL_colab: &train_and_val_NELL_colab !BasicStage
@@ -203,7 +203,7 @@ train_and_val_NELL_colab: &train_and_val_NELL_colab !BasicStage
       path: ./checkpoints/nell/out
 
   script:
-    - python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
+    - chmod +x prepare.sh && ./prepare.sh && python3 src/main.py --data ${path(self.inputs[0])}/ --epochs_gat ${self.params.epochs_gat} --epochs_conv ${self.params.epochs_conv} --weight_decay_gat ${self.params.weight_decay_gat} --get_2hop ${self.params.get_2hop} --partial_2hop ${self.params.partial_2hop} --batch_size_gat ${self.params.batch_size_gat} --margin ${self.params.margin} --out_channels ${self.params.out_channels} --drop_conv ${self.params.drop_conv} --weight_decay_conv ${self.params.weight_decay_conv} --output_folder ${path(self.outputs[0])}
 
 
 
